@@ -23,7 +23,11 @@ type Option struct {
 	Converter Converter
 
 	// optional: see slog.HandlerOptions
-	AddSource   bool
+	AddSource bool
+
+	// tag: syslog tag
+	Tag string
+
 	ReplaceAttr func(groups []string, a slog.Attr) slog.Attr
 }
 
@@ -67,8 +71,10 @@ func (h *SyslogHandler) Handle(ctx context.Context, record slog.Record) error {
 	if err != nil {
 		return err
 	}
-
-	_, err = h.option.Writer.Write(append([]byte(ceePrefix), bytes...))
+	syslogtag := h.option.Tag + ": "
+	logMessage := append([]byte(ceePrefix), bytes...)
+	logMessage = append([]byte(syslogtag), logMessage...)
+	_, err = h.option.Writer.Write(logMessage)
 	return err
 }
 
