@@ -8,7 +8,7 @@ import (
 
 	"log/slog"
 
-	slogsyslog "github.com/vayana/slog-syslog/v2/vayana/slog-syslog"
+	slogsyslog "github.com/vayana/slog-syslog/v2"
 )
 
 func main() {

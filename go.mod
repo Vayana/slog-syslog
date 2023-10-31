@@ -1,4 +1,4 @@
-module github.com/vayana/slog-syslog/v2/vayana/slog-syslog
+module github.com/vayana/slog-syslog/v2
 
 go 1.21
 
