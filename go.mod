@@ -1,4 +1,4 @@
-module github.com/samber/slog-syslog/v2
+module github.com/vayana/slog-syslog
 
 go 1.21
 
