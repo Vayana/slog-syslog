@@ -71,9 +71,11 @@ func (h *SyslogHandler) Handle(ctx context.Context, record slog.Record) error {
 	if err != nil {
 		return err
 	}
-	syslogtag := h.option.Tag + ": "
 	logMessage := append([]byte(ceePrefix), bytes...)
-	logMessage = append([]byte(syslogtag), logMessage...)
+	if h.option.Tag != "" {
+		syslogtag := h.option.Tag + ": "
+		logMessage = append([]byte(syslogtag), logMessage...)
+	}
 	_, err = h.option.Writer.Write(logMessage)
 	return err
 }
